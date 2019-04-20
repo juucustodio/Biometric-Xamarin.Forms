@@ -2,11 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:BiometricDemo" 
-             x:Class="BiometricDemo.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-               HorizontalOptions="Center" 
-               VerticalOptions="CenterAndExpand" />
+             x:Class="BiometricDemo.MainPage" Padding="10">
+    <StackLayout VerticalOptions="Center">
+        <Button Clicked="Autenticar" Text="Autenticar" BackgroundColor="#F3F3F3"/>
+        <Label x:Name="Resultado" Text="" HorizontalTextAlignment="Center"/>
     </StackLayout>
 </ContentPage>

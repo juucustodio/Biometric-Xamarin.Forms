@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Plugin.Fingerprint;
 using Xamarin.Forms;
 
 namespace BiometricDemo
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(true)]
     public partial class MainPage : ContentPage
     {
@@ -17,5 +12,28 @@ namespace BiometricDemo
         {
             InitializeComponent();
         }
+
+        private async void Autenticar(object sender, EventArgs e)
+        {
+            var result = await CrossFingerprint.Current.IsAvailableAsync(true);
+
+            if (result)
+            {
+                var auth = await CrossFingerprint.Current.AuthenticateAsync("Toque no sensor");
+                if (auth.Authenticated)
+                {
+                    Resultado.Text = "Autenticado com sucesso! :)";
+                }
+                else
+                {
+                    Resultado.Text = "Impressão digital não reconhecida";
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ops","Dispositivo não suportado","OK");
+            }
+        }
+
     }
 }
